@@ -2,3 +2,4 @@ google-generativeai
 langchain
 streamlit
 faiss-cpu
+streamlit_chat

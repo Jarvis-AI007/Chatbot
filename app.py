@@ -25,7 +25,7 @@ if "history" not in st.session_state:
 
 @st.cache_resource
 def get_models():
-    loader = CSVLoader(file_path="Data/tips.csv",
+    loader = CSVLoader(file_path="Data/dataset.csv",
                        encoding="utf-8", csv_args={'delimiter': ','})
     data = loader.load()
 

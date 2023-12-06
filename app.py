@@ -20,6 +20,25 @@ st.title("College-Info 👨🏽‍💻")
 if "history" not in st.session_state:
     st.session_state.history = []
 
+
+# Function to embed and update the index
+def embed_index(doc_list, embed_fn, index_store):
+
+    if os.path.exists(index_store):
+        local_db = FAISS.load_local(index_store, embed_fn)
+        # local_db.merge_from(faiss_db)
+        # print("Merge completed")
+        # local_db.save_local(index_store)
+        # print("Updated index saved")
+    else:
+        try:
+            faiss_db = FAISS.from_documents(doc_list, embed_fn)
+        except Exception as e:
+            faiss_db = FAISS.from_texts(doc_list, embed_fn)
+        faiss_db.save_local(folder_path=index_store)
+        # print("New store created...")
+
+
 # Load data and create models
 
 
@@ -34,7 +53,15 @@ def get_models():
     text_chunks = text_splitter.split_documents(data)
 
     embeddings = GooglePalmEmbeddings()
-    vectorstore = FAISS.from_documents(text_chunks, embedding=embeddings)
+
+    # Specify the path where you want to save/load the vectorstore
+    index_store_path = "C:/Users/pankaj/OneDrive/Desktop/Project_1/Chatbot/VectorStore2"
+    # os.makedirs(index_store_path, exist_ok=True)
+
+    # Use the embed_index function to update or create the vectorstore
+    # embed_index(text_chunks, embeddings, index_store_path)
+
+    vectorstore = FAISS.load_local(index_store_path, embeddings)
 
     llm = GooglePalm(temperature=0.1)
     qa = RetrievalQA.from_chain_type(
@@ -44,6 +71,9 @@ def get_models():
 
 
 qa_model, vectorstore = get_models()
+
+# ... (rest of the code)
+
 
 # Generate answers and update chat history
 

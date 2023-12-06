@@ -55,7 +55,7 @@ def get_models():
     embeddings = GooglePalmEmbeddings()
 
     # Specify the path where you want to save/load the vectorstore
-    index_store_path = "C:/Users/pankaj/OneDrive/Desktop/Project_1/Chatbot/VectorStore2"
+    index_store_path = "VectorStore2"
     # os.makedirs(index_store_path, exist_ok=True)
 
     # Use the embed_index function to update or create the vectorstore

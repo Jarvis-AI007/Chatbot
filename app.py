@@ -40,8 +40,6 @@ def embed_index(doc_list, embed_fn, index_store):
 
 
 # Load data and create models
-
-
 @st.cache_resource
 def get_models():
     loader = CSVLoader(file_path="Data/dataset.csv",

@@ -1,5 +1,5 @@
 google-generativeai
-langchain
+langchain==0.0.339
 streamlit
 faiss-cpu
 streamlit_chat

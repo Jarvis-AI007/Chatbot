@@ -1,3 +1,4 @@
+import warnings
 import streamlit as st
 from streamlit_chat import message as st_message
 from langchain.document_loaders.csv_loader import CSVLoader
@@ -19,6 +20,12 @@ st.title("College-Info 👨🏽‍💻")
 # Initialize session state
 if "history" not in st.session_state:
     st.session_state.history = []
+
+# error:
+
+# with warnings.catch_warnings():
+#     warnings.simplefilter("ignore")
+#     llm = GooglePalm(temperature=0.1)
 
 
 # Function to embed and update the index
